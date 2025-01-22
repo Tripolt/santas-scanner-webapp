@@ -59,14 +59,7 @@ const Scanner: React.FC = () => {
       message: getResultMessage(score)
     };
 
-    try {
-      const countryResponse = await axios.get('http://ip-api.com/json');
-      if (countryResponse.data.status === 'success') {
-        verdict.country = countryResponse.data.countryCode;
-      }
-    } catch (err) {
-      console.error('Failed to fetch country:', err);
-    }
+    // Remove country fetching functionality
 
     setResult(verdict);
     setIsScanning(false);
