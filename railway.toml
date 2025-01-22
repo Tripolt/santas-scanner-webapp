@@ -1,0 +1,11 @@
+[build]
+builder = "NIXPACKS"
+buildCommand = "npm install && npm run build"
+
+[deploy]
+startCommand = "npx http-server ./dist"
+healthcheckPath = "/"
+healthcheckTimeout = 100
+
+[[ports]]
+port = "8080"
