@@ -6,6 +6,9 @@ import ScanningAnimation from './ScanningAnimation';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+
+const baseURL = import.meta.env.VITE_BASE_URL;
+
 const Scanner: React.FC = () => {
   const [name, setName] = useState('');
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
@@ -15,7 +18,7 @@ const Scanner: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const navigate = useNavigate();
   const fetchQuestions = async () => {
-    const res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/questions`);
+    const res = await axios.get(`${baseURL}/questions`);
     console.log("fetchQuestions");
     console.log(res.data);
     setQuestions(res.data);
@@ -65,7 +68,7 @@ const Scanner: React.FC = () => {
     setIsScanning(false);
 
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/scan-results`, verdict);
+      const res = await axios.post(`${baseURL}/scan-results`, verdict);
       console.log("POST to /scan-results", res.data);
     } catch (error) {
       console.error("Failed to save scan result", error);

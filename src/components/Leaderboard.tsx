@@ -24,10 +24,12 @@ const Leaderboard: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
     const [userCountry, setUserCountry] = useState<string | null>(null);
 
+    const baseURL = import.meta.env.VITE_BASE_URL;
+
     useEffect(() => {
         const fetchLeaderboard = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/leaderboard`);
+                const response = await axios.get(`${baseURL}/leaderboard`);
                 console.log("fetchLeaderboard");
                 console.log(response.data);
                 setLeaderboard(response.data);
