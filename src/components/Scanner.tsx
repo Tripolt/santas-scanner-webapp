@@ -15,7 +15,7 @@ const Scanner: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const navigate = useNavigate();
   const fetchQuestions = async () => {
-    const res = await axios.get('https://santas-scanner-backend.vercel.app/questions');
+    const res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/questions`);
     console.log("fetchQuestions");
     console.log(res.data);
     setQuestions(res.data);
@@ -72,7 +72,7 @@ const Scanner: React.FC = () => {
     setIsScanning(false);
 
     try {
-      const res = await axios.post('https://santas-scanner-backend.vercel.app/scan-results', verdict);
+      const res = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/scan-results`, verdict);
       console.log("POST to /scan-results", res.data);
     } catch (error) {
       console.error("Failed to save scan result", error);
